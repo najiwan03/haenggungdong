@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR Landing • 화령전</title>
+  <style>
+    body{margin:0;font-family:sans-serif;background:#0b1220;color:#fff;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:720px;margin:0 auto;padding:20px}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .lang button{margin-left:6px;padding:6px 10px;border-radius:8px;border:none;cursor:pointer}
+    .card{background:rgba(255,255,255,.06);border-radius:16px;padding:16px;margin-top:16px}
+    img{max-width:100%;display:block;border-radius:12px}
+    h2,h3{margin:0 0 10px}
+    .meta{color:#ccc;font-size:14px;line-height:1.6}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1 data-i18n="title">화령전</h1>
+      <div class="lang">
+        <button data-lang="ko">한</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="zh">中文</button>
+      </div>
+    </header>
+
+    <!-- 1. 첫번째: 오렌지 구슬 카드 이미지 -->
+    <section class="card">
+      <img src="images/group-98.png" alt="화령전 카드" />
+    </section>
+
+    <!-- 2. 두번째: 인증 안내 포스터 -->
+    <section class="card">
+      <img src="images/capture-poster.png" alt="캡처 인증 안내" />
+    </section>
+
+    <!-- 3. 설명 타이틀 -->
+    <section class="card">
+      <h3 data-i18n="hwrHeading">화령전에 대한 설명이에요!</h3>
+    </section>
+
+    <!-- 4. 설명 본문 -->
+    <section class="card">
+      <p class="meta" data-i18n="hwrDesc">수원 화령전은 대한민국 경기도 수원시 팔달구 신풍로23번길 34에 있는 조선시대의 제사 유적으로, 순조가 정조의 어진을 봉안하고 제사를 지내던 곳입니다. 옆에 화성행궁이 있어요!</p>
+    </section>
+
+    <!-- 5. 캐릭터 이미지 -->
+    <section class="card">
+      <img src="images/character-reading.png" alt="행등지기 캐릭터" />
+    </section>
+
+    <!-- 6. 마무리 멘트 -->
+    <section class="card">
+      <h3 data-i18n="findRest">나머지 이야기 구슬은 어디 있을까요?<br>함께 찾아주세요!</h3>
+    </section>
+
+  </div>
+  <script>
+    const i18n = {
+      ko:{
+        title:"화령전",
+        hwrHeading:"화령전에 대한 설명이에요!",
+        hwrDesc:"수원 화령전은 대한민국 경기도 수원시 팔달구 신풍로23번길 34에 있는 조선시대의 제사 유적으로, 순조가 정조의 어진을 봉안하고 제사를 지내던 곳입니다. 옆에 화성행궁이 있어요!",
+        findRest:"나머지 이야기 구슬은 어디 있을까요?<br>함께 찾아주세요!"
+      },
+      en:{
+        title:"Hwareongjeon",
+        hwrHeading:"About Hwareongjeon",
+        hwrDesc:"Hwareongjeon in Suwon is a Joseon‑era shrine located at 34, Sinpung‑ro 23beon‑gil, Paldal‑gu, Suwon‑si, Gyeonggi‑do, Republic of Korea. It is where King Sunjo enshrined the royal portrait (eojin) of King Jeongjo and held ancestral rites. Hwaseong Haenggung Palace stands right next to it!",
+        findRest:"Where are the other story orbs?<br>Please help us find them!"
+      },
+      zh:{
+        title:"华宁殿",
+        hwrHeading:"关于华宁殿",
+        hwrDesc:"水原华宁殿位于大韩民国京畿道水原市八达区新丰路23番街34号，是朝鲜时代的祭祀遗址，曾是纯祖奉安正祖御真并举行祭礼之处。旁边就是华城行宫！",
+        findRest:"其他故事宝珠在哪里呢？<br>一起去寻找吧！"
+      }
+    };
+
+    const setLang=(lang)=>{
+      const dict=i18n[lang]||i18n.ko;
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key=el.getAttribute('data-i18n');
+        if(dict[key]) el.innerHTML=dict[key];
+      });
+    };
+    document.querySelectorAll('.lang button').forEach(btn=>{
+      btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+    });
+    setLang('ko');
+  </script>
+</body>
+</html>
